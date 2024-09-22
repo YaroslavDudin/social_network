@@ -1,5 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+   const registerComplete = document.getElementById("register-complete-button");
+  registerComplete.style.display = "none";
+
+  const registerCompleteText = document.getElementById('register-complete-text')
+
+  const postText = document.getElementById('posts-text')
+  postText.style.display = "none"
+
+  const infoPostText = document.getElementById('info-post-text')
+  infoPostText.style.display = "none"
+
+  const postsButton = document.getElementById('post-button')
+  postsButton.style.display = "none"
+
   const usernameInput = document.getElementById('username');
   const ageInput = document.getElementById('age');
   const emailInput = document.getElementById('email');
@@ -25,7 +39,7 @@ function idGenerate() {
   }
 
   class User {
-    #id = idGenerate()
+    id = idGenerate()
     constructor(name, age, email, password) {
       this.name = name
       this.age = age
@@ -39,7 +53,7 @@ function idGenerate() {
         };
         
         const newPost = new Post(text)
-        console.log(`User ${this.name}, with ID ${this.#id} posted: ${newPost.text} (Post ID: ${newPost.getId()})`)
+        console.log(`User ${this.name}, with ID ${this.id} posted: ${newPost.text} (Post ID: ${newPost.getId()})`)
         
         postIdArr.push(newPost.getId())
         return text
@@ -136,9 +150,34 @@ function idGenerate() {
       const user = new User(username, age, email, password)
       userData.push(user)
       console.log(userData);
-      
+      registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`
+      registerComplete.style.display = "block";
     }
+
     
   }
   )
+  registerComplete.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    usernameInput.style.display = "none";
+    ageInput.style.display = "none";
+    emailInput.style.display = "none";
+    passwordInput.style.display = "none";
+    submitButton.style.display = "none";
+    registerComplete.style.display = "none";
+    registerCompleteText.style.display = "none";
+    postText.style.display = "block";
+    infoPostText.style.display = "block";
+    postsButton.style.display = "block";
+  })
+
+  postsButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    userData.forEach(user => {
+      console.log(user.post(postText.value));
+      infoPostText.innerHTML = `User ${user.name}, with ID ${user.id} posted: ${postText.value} (Post ID: ${postIdArr[postIdArr.length - 1]})`
+    })
+    
+  })  
 })
