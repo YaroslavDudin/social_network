@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   let userData = [];
   let postIdArr = [];
+  let postTextArr = [];
 
 function idGenerate() {
     return Math.random().toString(16).slice(2);
@@ -176,7 +177,10 @@ function idGenerate() {
     e.preventDefault();
     userData.forEach(user => {
       console.log(user.post(postText.value));
+      postTextArr.push(postText.value)
       infoPostText.innerHTML = `User ${user.name}, with ID ${user.id} posted: ${postText.value} (Post ID: ${postIdArr[postIdArr.length - 1]})`
+      console.log(`${postTextArr[postTextArr.length - 1]} with ID ${postIdArr[postIdArr.length - 1]}`); 
+      
     })
     
   })  
