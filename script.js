@@ -14,11 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const postsButton = document.getElementById('post-button')
   postsButton.style.display = "none"
 
+const phoneInput = document.getElementById('phone');
   const usernameInput = document.getElementById('username');
   const ageInput = document.getElementById('age');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
   const submitButton = document.getElementById('submit');
+
   
   let userData = [];
   let postIdArr = [];
@@ -41,11 +43,12 @@ function idGenerate() {
 
   class User {
     id = idGenerate()
-    constructor(name, age, email, password) {
+    constructor(name, age, email, password, phone) {
       this.name = name
       this.age = age
       this.email = email
       this.password = password
+      this.phone = phone
     }
     
     post(text) {
@@ -71,6 +74,16 @@ function idGenerate() {
     const age = ageInput.value;
     const email = emailInput.value;
     const password = passwordInput.value;
+    const phone = phoneInput.value;
+    function checkPhone() {
+      const PHONE_REGEXP = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+      if (!PHONE_REGEXP.test(phoneInput.value)) {
+        phoneInput.style.borderColor = 'red'
+        return false
+      }
+      phoneInput.style.borderColor = 'green'
+      return true
+    }
     function checkPassword() {
       const upperCaseLetters = /[A-Z]/g
       const lowerCaseLetters = /[a-z]/g
@@ -147,8 +160,8 @@ function idGenerate() {
       usernameInput.style.borderColor = 'green'
       return true
     }
-    if(checkPassword() && checkEmail() && checkAge() && checkUsername()) {
-      const user = new User(username, age, email, password)
+    if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone()) {
+      const user = new User(username, age, email, password,phone)
       userData.push(user)
       console.log(userData);
       registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`
@@ -168,6 +181,7 @@ function idGenerate() {
     submitButton.style.display = "none";
     registerComplete.style.display = "none";
     registerCompleteText.style.display = "none";
+    phoneInput.style.display = "none";
     postText.style.display = "block";
     infoPostText.style.display = "block";
     postsButton.style.display = "block";
