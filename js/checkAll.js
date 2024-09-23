@@ -1,17 +1,12 @@
 import {userData} from "./script.js";
 import {User} from "./classes.js"
+
+
 const registerComplete = document.getElementById("register-complete-button");
- registerComplete.style.display = "none";
+registerComplete.style.display = "none";
+
 const registerCompleteText = document.getElementById('register-complete-text')
 
- const postText = document.getElementById('posts-text')
- postText.style.display = "none"
-
- const infoPostText = document.getElementById('info-post-text')
- infoPostText.style.display = "none"
-
- const postsButton = document.getElementById('post-button')
- postsButton.style.display = "none"
 // ERORS
  const passwordError = document.getElementById('password-error')
  const emailError = document.getElementById('email-error')
