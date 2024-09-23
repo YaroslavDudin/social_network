@@ -1,4 +1,4 @@
-import userData from "./script.js";
+import {userData} from "./script.js";
 const registerComplete = document.getElementById("register-complete-button");
  registerComplete.style.display = "none";
 
@@ -23,6 +23,7 @@ const registerComplete = document.getElementById("register-complete-button");
  const ageInput = document.getElementById('age');
  const emailInput = document.getElementById('email');
  const passwordInput = document.getElementById('password');
+ const checkPasswords = document.getElementById('passwordCheck');
 
  
  export function checkPhone() {
@@ -43,46 +44,68 @@ export function checkPassword() {
     const specialCharacters = /[!@#$%^&*()_+\-=\]{};':"\\|,.<>?]/g
     if (passwordInput.value.length < 8) {
       passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+
       passwordError.innerHTML = "Password must be at least 8 characters long"
       return false
       }
   
     if (passwordInput.value === emailInput.value) {
       passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+
       passwordError.innerHTML = "Password cannot be the same as email"
       return false
     }
   
     if (passwordInput.value.includes(' ')) {
       passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+
       passwordError.innerHTML = "Password cannot contain spaces"
       return false
     }
   
     if (!upperCaseLetters.test(passwordInput.value)) {
       passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+
       passwordError.innerHTML = "Password must contain at least one uppercase letter"
       return false
     }
   
     if (!lowerCaseLetters.test(passwordInput.value)) {
       passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+
       passwordError.innerHTML = "Password must contain at least one lowercase letter"
       return false
     }
   
     if (!numbers.test(passwordInput.value)) {
       passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+
       passwordError.innerHTML = "Password must contain at least one number"
       return false
     }
   
     if (!specialCharacters.test(passwordInput.value)) {
       passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+
       passwordError.innerHTML = "Password must contain at least one special character"
       return false
     }
+    if (passwordInput.value !== passwordCheck.value) {
+      passwordInput.style.borderColor = 'red'
+      checkPasswords.style.borderColor = 'red'
+      passwordError.innerHTML = "Passwords do not match"
+      return false
+    }
+   
     passwordInput.style.borderColor = 'green'
+    checkPasswords.style.borderColor = 'green'
     passwordError.innerHTML = ""
     return true
   }

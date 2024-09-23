@@ -19,24 +19,24 @@ import {User, postIdArr} from "./classes.js"
  const usernameInput = document.getElementById('username');
  const ageInput = document.getElementById('age');
  const emailInput = document.getElementById('email');
- const passwordInput = document.getElementById('password');
+ export const passwordInput = document.getElementById('password');
  const submitButton = document.getElementById('submit');
+ export const passwordCheck = document.getElementById('passwordCheck');
 // labels
  const label1 = document.getElementById('label1');
  const label2 = document.getElementById('label2');
  const label3 = document.getElementById('label3');
  const label4 = document.getElementById('label4');
  const label5 = document.getElementById('label5');
+ const label6 = document.getElementById('label6')
  
- let userData = [];
+ export let userData = [];
  let postTextArr = [];
  let postInfoArr = [];
- export default userData
- document.addEventListener("DOMContentLoaded", function () {
-
-
-
  
+
+
+ document.addEventListener("DOMContentLoaded", function () {
 
  submitButton.addEventListener('click', (e) => {
    e.preventDefault();
@@ -69,16 +69,19 @@ import {User, postIdArr} from "./classes.js"
    registerComplete.style.display = "none";
    registerCompleteText.style.display = "none";
    phoneInput.style.display = "none";
+   passwordCheck.style.display = "none";
    label1.innerHTML = ""
    label2.innerHTML = ""
    label3.innerHTML = ""
    label4.innerHTML = ""
    label5.innerHTML = ""
+   label6.innerHTML = ""
    label1.style.display = "none";
    label2.style.display = "none";
    label3.style.display = "none";
    label4.style.display = "none";
    label5.style.display = "none";
+   label6.style.display = "none";
    postText.style.display = "block";
    infoPostText.style.display = "block";
    postsButton.style.display = "block";
