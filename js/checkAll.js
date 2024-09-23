@@ -1,7 +1,8 @@
 import {userData} from "./script.js";
+import {User} from "./classes.js"
 const registerComplete = document.getElementById("register-complete-button");
  registerComplete.style.display = "none";
-
+const registerCompleteText = document.getElementById('register-complete-text')
 
  const postText = document.getElementById('posts-text')
  postText.style.display = "none"
@@ -24,7 +25,7 @@ const registerComplete = document.getElementById("register-complete-button");
  const emailInput = document.getElementById('email');
  const passwordInput = document.getElementById('password');
  const checkPasswords = document.getElementById('passwordCheck');
-
+ const submitButton = document.getElementById('submit');
  
  export function checkPhone() {
     const PHONE_REGEXP = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
@@ -167,4 +168,26 @@ export function checkPassword() {
     usernameError.innerHTML = ""
     return true
   }
+  export function checkAll () {
+    
+  submitButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    const username = usernameInput.value;
+    const age = ageInput.value;
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const phone = phoneInput.value;
+    
+    if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone()) {
+     const user = new User(username, age, email, password,phone)
+     submitButton.disabled = true
+     userData.push(user)
+     console.log(userData);
+     registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`
+     registerComplete.style.display = "block";
+   }
  
+    
+  }
+  )
+}
