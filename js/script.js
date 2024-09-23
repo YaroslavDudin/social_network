@@ -1,6 +1,7 @@
 import { checkAll} from "./checkAll.js";
 import { disableForm } from "./formDisable.js";
 import { posts } from "./postButton.js";
+import { hidePassword } from "./hidePassword.js";
 export let userData = [];
  
  
@@ -11,4 +12,6 @@ export let userData = [];
  disableForm()
 
  posts()
+
+ hidePassword()
 })

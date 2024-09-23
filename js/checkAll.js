@@ -23,7 +23,7 @@ const registerCompleteText = document.getElementById('register-complete-text')
  const usernameInput = document.getElementById('username');
  const ageInput = document.getElementById('age');
  const emailInput = document.getElementById('email');
- const passwordInput = document.getElementById('password');
+ export const passwordInput = document.getElementById('password');
  const checkPasswords = document.getElementById('passwordCheck');
  const submitButton = document.getElementById('submit');
  
@@ -133,7 +133,6 @@ export function checkPassword() {
     return true;
   }
   export function checkAge() {
-    let words = /[^a-zA-Z]/g
     if (ageInput.value < 14) {
       ageInput.style.borderColor = 'red'
       ageError.innerHTML = "Age must be greater than 14"
@@ -149,11 +148,12 @@ export function checkPassword() {
       ageError.innerHTML = "Age cannot contain spaces"
       return false
     }
-    if (!words.test(ageInput.value)) {
-      ageInput.style.borderColor = 'red'
-      ageError.innerHTML = "Age cannot contain letters"
-      return false
-    }
+    let words = /[a-zA-Zа-яА-ЯöÖüÜäÄß]/g
+    if (words.test(ageInput.value)) {
+  ageInput.style.borderColor = 'red'
+  ageError.innerHTML = "Age cannot contain letters"
+  return false
+}
     ageInput.style.borderColor = 'green'
     ageError.innerHTML = ""
       return true
@@ -190,4 +190,5 @@ export function checkPassword() {
     
   }
   )
+
 }
