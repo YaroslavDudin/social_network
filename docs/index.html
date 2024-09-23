@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script type="module" src="js/script.js"></script>
+</head>
+<body>
+    <main>
+        <section id="form-container">
+            <article id="form-container">
+                <form>
+                    <label id="label1" for="field">Имя</label>
+                    <input type="text" id="username" placeholder="Username">
+                    
+                    <label id="label2" for="field">Возраст</label>
+                    <input type="text" id="age" placeholder="Age">
+                    
+                    <label id="label3" for="field">Email</label>
+                    <input type="text" id="email"  placeholder="Email">
+                    
+                    <label id="label4" for="field">Пароль</label>
+                    
+                    <input type="password"    id="password" placeholder="Password">
+
+                    <label id="label5" for="field">Подтвердите пароль</label>
+                    <input type="password" id="passwordCheck" placeholder="Password">
+                    
+                    <label id="label6" for="field">Телефон</label>
+                    <input type="text" id="phone" placeholder="Phone">
+                    <div class="container">
+                    <button id="toggle-password" class="btn-hide-password">Показать пароль</button>
+                    <button id="submit" class="btn">Submit</button>
+                    </div>
+            </form>
+            </article>
+            <span id="password-error" class="error"> </span>
+            <span id="email-error" class="error"></span>
+            <span id="age-error"class="error"></span>
+            <span id="username-error" class="error"></span>
+            <span id="phone-error" class="error"></span>
+        </section>
+        <section id="register-complete">
+            <article id="register-complete-container">
+                <span id="register-complete-text"></span>
+                <button id="register-complete-button">Continue</button>
+            </article>
+        </section>
+        <section id="posts">
+            <article id="posts-container">
+                <span id="info-post-text">Напишите ваш пост</span>
+                <input type="text" id="posts-text"></input>
+                <button id="post-button">Опубликовать</button>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
