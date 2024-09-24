@@ -192,7 +192,6 @@ export function checkPassword() {
     const password = passwordInput.value;
     const phone = phoneInput.value;
     const gender = genderInput.value;
-    console.log(gender);
     
     if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone() && checkGender()) {
      const user = new User(username, age, gender, email, password,phone)
