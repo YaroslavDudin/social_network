@@ -13,15 +13,34 @@ const registerCompleteText = document.getElementById('register-complete-text')
  const ageError = document.getElementById('age-error')
  const usernameError = document.getElementById('username-error')
  const phoneError = document.getElementById('phone-error')
+ const genderError = document.getElementById('gender-error')
 // forminfo
  const phoneInput = document.getElementById('phone');
  const usernameInput = document.getElementById('username');
  const ageInput = document.getElementById('age');
  const emailInput = document.getElementById('email');
+ const genderInput = document.getElementById('genderSelect');
  export const passwordInput = document.getElementById('password');
- const checkPasswords = document.getElementById('passwordCheck');
+ export const checkPasswords = document.getElementById('passwordCheck');
  const submitButton = document.getElementById('submit');
+//  const checkGenders = document.getElementsByName('gender')
+ const genderStyles = document.getElementById('genderSelect')
  
+ export function checkGender () {
+   if (genderInput.value === "male")  {
+     genderStyles.style.borderColor = 'green'
+     return true
+   }
+   else if (genderInput.value === "female") {
+     genderStyles.style.borderColor = 'green'
+     return true
+   }
+   else {
+     genderStyles.style.borderColor = 'red'
+     genderError.innerHTML = "Please select your gender"
+     return false
+   }
+ }
  export function checkPhone() {
     const PHONE_REGEXP = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
     if (!PHONE_REGEXP.test(phoneInput.value)) {
@@ -172,9 +191,11 @@ export function checkPassword() {
     const email = emailInput.value;
     const password = passwordInput.value;
     const phone = phoneInput.value;
+    const gender = genderInput.value;
+    console.log(gender);
     
-    if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone()) {
-     const user = new User(username, age, email, password,phone)
+    if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone() && checkGender()) {
+     const user = new User(username, age, gender, email, password,phone)
      submitButton.disabled = true
      userData.push(user)
      console.log(userData);

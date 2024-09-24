@@ -15,12 +15,14 @@ class Post {
  
   class User {
     id = idGenerate()
-    constructor(name, age, email, password, phone) {
+    constructor(name, age,gender, email, password, phone) {
       this.name = name
       this.age = age
       this.email = email
       this.password = password
       this.phone = phone
+      this.gender = gender
+      
     }
     
     post(text) {
