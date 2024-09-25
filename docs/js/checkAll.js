@@ -28,7 +28,7 @@ const registerCompleteText = document.getElementById('register-complete-text')
 //  const checkGenders = document.getElementsByName('gender')
  const genderStyles = document.getElementById('genderSelect');
  
- export function checkGender () {
+ export function checkGender () {zz
    if (genderInput.value === "male")  {
      return true
    }
