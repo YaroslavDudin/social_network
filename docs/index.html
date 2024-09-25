@@ -11,38 +11,41 @@
     <main>
         <section id="form-container">
             <article id="form-container">
-                <form>
+                <form class = "reg-form">
                     <label id="label1" for="field">Имя</label>
-                    <input type="text" id="username" placeholder="Username">
+                    <input type="text" id="username" placeholder="Имя">
                     
-                    <label id="label2" for="field">Возраст</label>
-                    <input type="text" id="age" placeholder="Age">
-                    
-                    <label id ="label7" for="field">Выберите ваш пол</label>
-                    <select name="lang" id="genderSelect"> 
+                    <label id="label2" class="login-disable-age-label" for="field">Возраст</label>
+                    <input type="text" id="age" class = "login-disable-age" placeholder="Возраст">
+   
+                    <label id ="label7" class="login-disable-sex-select-label" for="field">Выберите ваш пол</label>
+                    <select name="lang" id="genderSelect" class="login-disable-sex-select"> 
                         <option id="selectGen">Выберите ваш пол</option>
                         <option id="male" value="male">Мужской</option> 
                         <option id="female" value="female">Женский</option> 
                     </select>
                     
-                    <label id="label3" for="field">Email</label>
-                    <input type="text" id="email"  placeholder="Email">
+                    <label id="label3" class = "login-disable-email-label" for="field">Email</label>
+                    <input type="text" id="email" class = "login-disable-email" placeholder="Email">
                     
                     <label id="label4" for="field">Пароль</label>
                     
-                    <input type="password"    id="password" placeholder="Password">
+                    <input type="password"  id="password" placeholder="Пароль">
 
                     <label id="label5" for="field">Подтвердите пароль</label>
-                    <input type="password" id="passwordCheck" placeholder="Password">
+                    <input type="password" id="passwordCheck" placeholder="Пароль">
                     
-                    <label id="label6" for="field">Телефон</label>
-                    <input type="text" id="phone" placeholder="Phone">
+                    <label id="label6" class="login-disable-phone-label" for="field">Телефон</label>
+                    <input type="text" id="phone" class="login-disable-phone" placeholder="Номер Телефона">
                     
                     <div class="container">
                     <button id="toggle-password" class="btn-hide-password">Показать пароль</button>
-                    <button id="submit" class="btn">Submit</button>
+                    <button id="submit" class="btn">Регистрация</button>
                     </div>
             </form>
+
+            <button id="switch-to-login-button">Уже зарегистрированы?</button>
+
             </article>
             <span id="password-error" class="error"> </span>
             <span id="email-error" class="error"></span>

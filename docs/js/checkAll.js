@@ -1,5 +1,6 @@
 import {userData} from "./script.js";
 import {User} from "./classes.js"
+import { disableForm , disableFormLogin } from "./formDisable.js";
 
 
 const registerComplete = document.getElementById("register-complete-button");
@@ -7,7 +8,7 @@ registerComplete.style.display = "none";
 
 const registerCompleteText = document.getElementById('register-complete-text')
 
-// ERORS
+// ERRORS
  const passwordError = document.getElementById('password-error')
  const emailError = document.getElementById('email-error')
  const ageError = document.getElementById('age-error')
@@ -23,8 +24,9 @@ const registerCompleteText = document.getElementById('register-complete-text')
  export const passwordInput = document.getElementById('password');
  export const checkPasswords = document.getElementById('passwordCheck');
  const submitButton = document.getElementById('submit');
+//  const switchToLoginButton = document.getElementById('switch-to-login-button');
 //  const checkGenders = document.getElementsByName('gender')
- const genderStyles = document.getElementById('genderSelect')
+ const genderStyles = document.getElementById('genderSelect');
  
  export function checkGender () {
    if (genderInput.value === "male")  {
@@ -196,14 +198,16 @@ export function checkPassword() {
     if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone() && checkGender()) {
      const user = new User(username, age, gender, email, password,phone)
      submitButton.disabled = true
-     userData.push(user)
+     .push(user)
      console.log(userData);
      registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`
      registerComplete.style.display = "block";
    }
- 
-    
+   
   }
   )
-
+ 
 }
+
+
+  

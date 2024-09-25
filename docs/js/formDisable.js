@@ -1,6 +1,8 @@
+
 const registerComplete = document.getElementById("register-complete-button");
 registerComplete.style.display = "none";
 const registerCompleteText = document.getElementById('register-complete-text')
+const switchToLoginButton = document.getElementById('switch-to-login-button');
 
 const postText = document.getElementById('posts-text')
 postText.style.display = "none"
@@ -14,8 +16,10 @@ postsButton.style.display = "none"
 
 
 const form = document.getElementById('form-container');
+const formLogin = document.querySelectorAll('.login-disable-age, .login-disable-age-label, .login-disable-email, .login-disable-email-label, .login-disable-phone, .login-disable-phone-label, .login-disable-sex-select, .login-disable-sex-select-label');
+const submitButton = document.getElementById('submit');
 
- function disableForm() {
+  function disableForm() {
     registerComplete.addEventListener('click', (e) => {
     e.preventDefault();
     form.style.display = "none";
@@ -27,4 +31,18 @@ const form = document.getElementById('form-container');
   })
 
 }
-export {disableForm}
+
+  function disableFormLogin() {
+      switchToLoginButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        formLogin.forEach((element) => {
+          element.style.display = "none";
+        });
+        submitButton.textContent = 'Логин';
+        form.style.display = "block";
+        registerComplete.style.display = "none";
+        registerCompleteText.style.display = "none";
+      })
+    }
+
+export {disableForm , disableFormLogin}
