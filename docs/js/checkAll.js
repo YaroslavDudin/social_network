@@ -15,6 +15,7 @@ const registerCompleteText = document.getElementById('register-complete-text')
  const ageError = document.getElementById('age-error')
  const usernameError = document.getElementById('username-error')
  const phoneError = document.getElementById('phone-error')
+ const genderError = document.getElementById('gender-error')
 // forminfo
  const phoneInput = document.getElementById('phone');
  const usernameInput = document.getElementById('username');
@@ -30,15 +31,19 @@ const registerCompleteText = document.getElementById('register-complete-text')
  
  export function checkGender () {
   if (genderInput.value === "male")  {
-    genderStyles.style.borderColor = 'green'
+    genderStyles.style.border = '2px solid green'
+
+    genderError.innerHTML = ""
     return true
   }
   else if (genderInput.value === "female") {
     genderStyles.style.borderColor = 'green'
+    genderStyles.style.border = '2px solid green'
+    genderError.innerHTML = ""
     return true
   }
   else {
-    genderStyles.style.borderColor = 'red'
+    genderStyles.style.border = '2px solid red'
     genderError.innerHTML = "Please select your gender"
     return false
   }
@@ -46,11 +51,17 @@ const registerCompleteText = document.getElementById('register-complete-text')
  export function checkPhone() {
     const PHONE_REGEXP = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
     if (!PHONE_REGEXP.test(phoneInput.value)) {
-      phoneInput.style.borderColor = 'red'
+      phoneInput.style.border = '2px solid red'
       phoneError.innerHTML = "Phone number is not valid"
       return false
     }
-    phoneInput.style.borderColor = 'green'
+
+    if (phoneInput.value.includes(' ')) {
+      phoneInput.style.border = '2px solid red'
+      phoneError.innerHTML = "Phone number cannot contain spaces"
+      return false
+    }
+    phoneInput.style.border = '2px solid green'
     phoneError.innerHTML = ""
     return true
   }
@@ -60,127 +71,127 @@ export function checkPassword() {
     const numbers = /[0-9]/g
     const specialCharacters = /[!@#$%^&*()_+\-=\]{};':"\\|,.<>?]/g
     if (passwordInput.value.length < 8) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
 
       passwordError.innerHTML = "Password must be at least 8 characters long"
       return false
       }
   
     if (passwordInput.value === emailInput.value) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
 
       passwordError.innerHTML = "Password cannot be the same as email"
       return false
     }
   
     if (passwordInput.value.includes(' ')) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
 
       passwordError.innerHTML = "Password cannot contain spaces"
       return false
     }
   
     if (!upperCaseLetters.test(passwordInput.value)) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
 
       passwordError.innerHTML = "Password must contain at least one uppercase letter"
       return false
     }
   
     if (!lowerCaseLetters.test(passwordInput.value)) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
 
       passwordError.innerHTML = "Password must contain at least one lowercase letter"
       return false
     }
   
     if (!numbers.test(passwordInput.value)) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
 
       passwordError.innerHTML = "Password must contain at least one number"
       return false
     }
   
     if (!specialCharacters.test(passwordInput.value)) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
 
       passwordError.innerHTML = "Password must contain at least one special character"
       return false
     }
     if (passwordInput.value !== passwordCheck.value) {
-      passwordInput.style.borderColor = 'red'
-      checkPasswords.style.borderColor = 'red'
+      passwordInput.style.border = '2px solid red'
+      checkPasswords.style.border = '2px solid red'
       passwordError.innerHTML = "Passwords do not match"
       return false
     }
    
-    passwordInput.style.borderColor = 'green'
-    checkPasswords.style.borderColor = 'green'
+    passwordInput.style.border = '2px solid green'
+    checkPasswords.style.border = '2px solid green'
     passwordError.innerHTML = ""
     return true
   }
   export function checkEmail() {
     const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
     if (emailInput.value.includes(' ')) {
-      emailInput.style.borderColor = 'red'
+      emailInput.style.border = '2px solid red'
       emailError.innerHTML = "Email cannot contain spaces"
       return false;
     }
     if (!EMAIL_REGEXP.test(emailInput.value)) {
-      emailInput.style.borderColor = 'red'
+      emailInput.style.border = '2px solid red'
       emailError.innerHTML = "Email is not valid"
       return false;
     }
     if (userData.some(user => user.email === emailInput.value)) {
-     emailInput.style.borderColor = 'red';
+     emailInput.style.border = '2px solid red'
      emailError.innerHTML = "Email is already registered";
      return false; 
    }
    emailError.innerHTML = ""
-    emailInput.style.borderColor = 'green'
+    emailInput.style.border = '2px solid green'
     
     return true;
   }
   export function checkAge() {
     if (ageInput.value < 14) {
-      ageInput.style.borderColor = 'red'
+      ageInput.style.border = '2px solid red'
       ageError.innerHTML = "Age must be greater than 14"
       return false
     }
     if (ageInput.value > 90) {
-      ageInput.style.borderColor = 'red'
+      ageInput.style.border = '2px solid red'
       ageError.innerHTML = "I think you know what's wrong with your age"
       return false
     }
     if (ageInput.value.includes(' ')) {
-      ageInput.style.borderColor = 'red'
+      ageInput.style.border = '2px solid red'
       ageError.innerHTML = "Age cannot contain spaces"
       return false
     }
     let words = /[a-zA-Zа-яА-ЯöÖüÜäÄß]/g
     if (words.test(ageInput.value)) {
-  ageInput.style.borderColor = 'red'
+  ageInput.style.border = '2px solid red'
   ageError.innerHTML = "Age cannot contain letters"
   return false
 }
-    ageInput.style.borderColor = 'green'
+    ageInput.style.border = '2px solid green'
     ageError.innerHTML = ""
       return true
  }
  export function checkUsername() {
     if (usernameInput.value.length < 3) {
-      usernameInput.style.borderColor = 'red'
+      usernameInput.style.border = '2px solid red'
       usernameError.innerHTML = "Username must be at least 3 characters long"
       return false
     }
-    usernameInput.style.borderColor = 'green'
+    usernameInput.style.border = '2px solid green'
     usernameError.innerHTML = ""
     return true
   }

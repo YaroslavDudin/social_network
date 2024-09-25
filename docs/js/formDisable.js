@@ -39,7 +39,7 @@ const submitButton = document.getElementById('submit');
           element.style.display = "none";
         });
         submitButton.textContent = 'Логин';
-        form.style.display = "block";
+        // form.style.display = "block";
         registerComplete.style.display = "none";
         registerCompleteText.style.display = "none";
       })
