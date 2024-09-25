@@ -195,6 +195,8 @@ export function checkPassword() {
     if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone()) {
      const user = new User(username, age, gender, email, password,phone)
      submitButton.disabled = true
+     user.generationAvatar()
+     img.style.display = "none"
      userData.push(user)
      console.log(userData);
      registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`
