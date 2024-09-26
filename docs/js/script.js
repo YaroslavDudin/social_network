@@ -1,5 +1,5 @@
-import { checkAll, disableLoginButton} from "./checkAll.js";
-import { disableForm, disableFormLogin } from "./formDisable.js";
+import { checkAll, toggleFormButtons} from "./checkAll.js";
+import { disableForm,  toggleForm } from "./formDisable.js";
 import { posts } from "./postButton.js";
 import { hidePassword } from "./hidePassword.js";
 export let userData = [];
@@ -11,14 +11,11 @@ export let userData = [];
 
  disableForm()
 
- disableFormLogin()
-
  posts()
 
  hidePassword()
 
- disableLoginButton()
+ toggleFormButtons()
 
 
- 
 })

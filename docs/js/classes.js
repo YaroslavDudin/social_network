@@ -17,9 +17,8 @@ class Post {
   class User {
     id = idGenerate()
     avatar = this.generationAvatar()
-    constructor(name, age,gender, email, password, phone) {
+    constructor(name,gender, email, password, phone) {
       this.name = name
-      this.age = age
       this.email = email
       this.password = password
       this.phone = phone

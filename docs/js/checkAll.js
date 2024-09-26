@@ -1,8 +1,7 @@
+import { toggleForm } from "./formDisable.js";
 import {userData} from "./script.js";
 import {User} from "./classes.js"
 const img = document.getElementById('avatar');
-import { disableForm , disableFormLogin } from "./formDisable.js";
-
 
 const registerComplete = document.getElementById("register-complete-button");
 registerComplete.style.display = "none";
@@ -12,14 +11,12 @@ const registerCompleteText = document.getElementById('register-complete-text')
 // ERRORS
  const passwordError = document.getElementById('password-error')
  const emailError = document.getElementById('email-error')
- const ageError = document.getElementById('age-error')
  const usernameError = document.getElementById('username-error')
  const phoneError = document.getElementById('phone-error')
  const genderError = document.getElementById('gender-error')
 // forminfo
  const phoneInput = document.getElementById('phone');
  const usernameInput = document.getElementById('username');
- const ageInput = document.getElementById('age');
  const emailInput = document.getElementById('email');
  const genderInput = document.getElementById('genderSelect');
  export const passwordInput = document.getElementById('password');
@@ -30,10 +27,34 @@ const registerCompleteText = document.getElementById('register-complete-text')
  const loginButton = document.getElementsByClassName('btn-login')[0]; 
  const registerButton = document.getElementsByClassName('btn-register')[0];
 
- export function disableLoginButton() {
-  loginButton.style.display = registerButton.style.display === "none" ? "block" : "none";
-  console.log('login button ' + (loginButton.style.display === "block" ? 'enabled' : 'disabled'))
+ const switchToLoginButton = document.getElementById('switch-to-login-button');
+const switchToRegisterButton = document.getElementById('switch-to-register-button');
+
+
+export function toggleFormButtons() {
+  switchToLoginButton.style.display = "block";
+  switchToRegisterButton.style.display = "none";
+
+  switchToLoginButton.addEventListener('click', () => {
+    toggleForm();
+    loginButton.style.display = "block";
+    registerButton.style.display = "none";
+    switchToLoginButton.style.display = "none";
+    switchToRegisterButton.style.display = "block";
+  });
+
+  switchToRegisterButton.addEventListener('click', () => {
+    toggleForm();
+    loginButton.style.display = "none";
+    registerButton.style.display = "block";
+    switchToLoginButton.style.display = "block";
+    switchToRegisterButton.style.display = "none";
+  });
+
+  loginButton.style.display = "none";
+  registerButton.style.display = "block";
 }
+
 
  export function checkGender () {
   if (genderInput.value === "male")  {
@@ -165,32 +186,32 @@ export function checkPassword() {
     
     return true;
   }
-  export function checkAge() {
-    if (ageInput.value < 14) {
-      ageInput.style.border = '2px solid red'
-      ageError.innerHTML = "Age must be greater than 14"
-      return false
-    }
-    if (ageInput.value > 90) {
-      ageInput.style.border = '2px solid red'
-      ageError.innerHTML = "I think you know what's wrong with your age"
-      return false
-    }
-    if (ageInput.value.includes(' ')) {
-      ageInput.style.border = '2px solid red'
-      ageError.innerHTML = "Age cannot contain spaces"
-      return false
-    }
-    let words = /[a-zA-Zа-яА-ЯöÖüÜäÄß]/g
-    if (words.test(ageInput.value)) {
-  ageInput.style.border = '2px solid red'
-  ageError.innerHTML = "Age cannot contain letters"
-  return false
-}
-    ageInput.style.border = '2px solid green'
-    ageError.innerHTML = ""
-      return true
- }
+//   export function checkAge() {
+//     if (ageInput.value < 14) {
+//       ageInput.style.border = '2px solid red'
+//       ageError.innerHTML = "Age must be greater than 14"
+//       return false
+//     }
+//     if (ageInput.value > 90) {
+//       ageInput.style.border = '2px solid red'
+//       ageError.innerHTML = "I think you know what's wrong with your age"
+//       return false
+//     }
+//     if (ageInput.value.includes(' ')) {
+//       ageInput.style.border = '2px solid red'
+//       ageError.innerHTML = "Age cannot contain spaces"
+//       return false
+//     }
+//     let words = /[a-zA-Zа-яА-ЯöÖüÜäÄß]/g
+//     if (words.test(ageInput.value)) {
+//   ageInput.style.border = '2px solid red'
+//   ageError.innerHTML = "Age cannot contain letters"
+//   return false
+// }
+//     ageInput.style.border = '2px solid green'
+//     ageError.innerHTML = ""
+//       return true
+//  }
  export function checkUsername() {
     if (usernameInput.value.length < 3) {
       usernameInput.style.border = '2px solid red'
@@ -206,13 +227,13 @@ export function checkPassword() {
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     const username = usernameInput.value;
-    const age = ageInput.value;
+
     const email = emailInput.value;
     const password = passwordInput.value;
     const phone = phoneInput.value;
     const gender = genderInput.value;
-    if(checkPassword() && checkEmail() && checkAge() && checkUsername() && checkPhone() && checkGender()) {
-     const user = new User(username, age, gender, email, password,phone)
+    if(checkPassword() && checkEmail() && checkUsername() && checkPhone() && checkGender()) {
+     const user = new User(username, gender, email, password,phone)
      submitButton.disabled = true
      user.generationAvatar()
      img.style.display = "none"

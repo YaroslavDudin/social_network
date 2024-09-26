@@ -15,9 +15,6 @@
                     <label id="label1" for="field">Имя</label>
                     <input type="text" id="username" placeholder="Имя">
                     
-                    <label id="label2" class="login-disable-age-label" for="field">Возраст</label>
-                    <input type="text" id="age" class = "login-disable-age" placeholder="Возраст">
-   
                     <label id ="label7" class="login-disable-sex-select-label" for="field">Выберите ваш пол</label>
                     <select name="lang" id="genderSelect" class="login-disable-sex-select"> 
                         <option id="selectGen">Выберите ваш пол</option>
@@ -33,8 +30,8 @@
                     
                     <input type="password"  id="password" placeholder="Пароль">
 
-                    <label id="label5" for="field">Подтвердите пароль</label>
-                    <input type="password" id="passwordCheck" placeholder="Пароль">
+                    <label id="label5" class = "login-disable-password-check-label" for="field">Подтвердите пароль</label>
+                    <input type="password" id="passwordCheck" class="login-disable-password-check" placeholder="Пароль">
                     
                     <label id="label6" class="login-disable-phone-label" for="field">Телефон</label>
                     <input type="text" id="phone" class="login-disable-phone" placeholder="Номер Телефона">
@@ -47,12 +44,12 @@
                     </div>
             </form>
 
-            <<button id="switch-to-login-button" class="btn-switch">Уже зарегистрированы?</button>
+            <button id="switch-to-login-button" class="btn-switch">Уже зарегистрированы?</button>
+            <button id="switch-to-register-button" class="btn-switch">Вернуться</button>
 
             </article>
             <span id="password-error" class="error"> </span>
             <span id="email-error" class="error"></span>
-            <span id="age-error"class="error"></span>
             <span id="username-error" class="error"></span>
             <span id="phone-error" class="error"></span>
             <span id="gender-error" class="error"></span>

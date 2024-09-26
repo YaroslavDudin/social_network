@@ -1,12 +1,9 @@
-
-
-
 const registerComplete = document.getElementById("register-complete-button");
 registerComplete.style.display = "none";
 const img = document.getElementById('avatar');
 
 const registerCompleteText = document.getElementById('register-complete-text')
-const switchToLoginButton = document.getElementById('switch-to-login-button');
+
 const loginButton = document.getElementsByClassName('btn-login')[0]; 
 const registerButton = document.getElementsByClassName('btn-register')[0];
 
@@ -19,9 +16,10 @@ infoPostText.style.display = "none"
 const postsButton = document.getElementById('post-button')
 postsButton.style.display = "none"
 const a = document.getElementById('form-container');
-const formLogin = document.querySelectorAll('.login-disable-age, .login-disable-age-label, .login-disable-phone, .login-disable-phone-label, .login-disable-sex-select, .login-disable-sex-select-label');
+const formLogin = document.querySelectorAll('.login-disable-phone, .login-disable-phone-label, .login-disable-sex-select, .login-disable-sex-select-label, .login-disable-password-check, .login-disable-password-check-label');
 const submitButton = document.getElementById('submit');
-  function disableForm() {
+ 
+function disableForm() {
     registerComplete.addEventListener('click', (e) => {
     e.preventDefault();
     a.style.display = "none";
@@ -33,23 +31,29 @@ const submitButton = document.getElementById('submit');
     img.style.display = "block"
 
   })
-
 }
 
+// функция переключения между экранами входа и регистраций
+function toggleForm() {
+  if (loginButton.style.display === "block") {
+    // показать экран регистрации
+    formLogin.forEach((element) => {
+      element.style.display = "block";
+    });
+    registerButton.style.display = "block";
+    loginButton.style.display = "none";
+    registerComplete.style.display = "none";
+    registerCompleteText.style.display = "none";
+  } else {
+    // показать экран входа
+    formLogin.forEach((element) => {
+      element.style.display = "none";
+    });
+    registerButton.style.display = "none";
+    loginButton.style.display = "block";
+    registerComplete.style.display = "none";
+    registerCompleteText.style.display = "none";
+  }
+}
 
-
-  function disableFormLogin() {
-      switchToLoginButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        formLogin.forEach((element) => {
-          element.style.display = "none";
-        });
-        registerButton.style.display = "none";
-        loginButton.style.display = "block";
-        registerComplete.style.display = "none";
-        registerCompleteText.style.display = "none";
-
-      })
-    }
-
-export {disableForm , disableFormLogin}
+export {disableForm , toggleForm}
