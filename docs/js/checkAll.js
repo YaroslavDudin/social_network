@@ -12,12 +12,10 @@ const registerCompleteText = document.getElementById('register-complete-text')
  const passwordError = document.getElementById('password-error')
  const emailError = document.getElementById('email-error')
  const usernameError = document.getElementById('username-error')
- const phoneError = document.getElementById('phone-error')
  const genderError = document.getElementById('gender-error')
 // forminfo
- const phoneInput = document.getElementById('phone');
  const usernameInput = document.getElementById('username');
- const emailInput = document.getElementById('email');
+ const email_or_phone_Input = document.getElementById('email_or_phone');
  const genderInput = document.getElementById('genderSelect');
  export const passwordInput = document.getElementById('password');
  export const checkPasswords = document.getElementById('passwordCheck');
@@ -75,23 +73,44 @@ export function toggleFormButtons() {
     return false
   }
 }
- export function checkPhone() {
-    const PHONE_REGEXP = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
-    if (!PHONE_REGEXP.test(phoneInput.value)) {
-      phoneInput.style.border = '2px solid red'
-      phoneError.innerHTML = "Phone number is not valid"
-      return false
+function checkPhoneandEmail() {
+  const inputValue = email_or_phone_Input.value.trim();
+
+  // Проверка на телефонный номер
+  if (inputValue.match(/^\+?\d{10,15}$/)) {
+    // Проверка на более типичные форматы телефонных номеров (дополнительно)
+    if (!inputValue.match(/^\+?\d{10,15}$/)) {
+      email_or_phone_Input.style.border = '2px solid red';
+      emailError.innerHTML = "Введите корректный номер телефона.";
+      return false;
     }
 
-    if (phoneInput.value.includes(' ')) {
-      phoneInput.style.border = '2px solid red'
-      phoneError.innerHTML = "Phone number cannot contain spaces"
-      return false
+    // Проверка пройдена, если телефонный номер в правильном формате
+    email_or_phone_Input.style.border = '2px solid green';
+    emailError.innerHTML = "";
+    return true;
+  } else {
+    // Проверка на email
+    if (inputValue.match(/^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu)) {
+      // Проверка на домен (дополнительно)
+      if (!inputValue.match(/@([a-z0-9]+\.)+[a-z]{2,}/i)) {
+        email_or_phone_Input.style.border = '2px solid red';
+        emailError.innerHTML = "Введите корректный email.";
+        return false;
+      }
+
+      // Проверка пройдена, если email в правильном формате
+      email_or_phone_Input.style.border = '2px solid green';
+      emailError.innerHTML = "";
+      return true;
+    } else {
+      // Ошибка: неверный телефонный номер и неверный email
+      email_or_phone_Input.style.border = '2px solid red';
+      emailError.innerHTML = "Введите корректный email или телефонный номер.";
+      return false;
     }
-    phoneInput.style.border = '2px solid green'
-    phoneError.innerHTML = ""
-    return true
   }
+}
 export function checkPassword() {
     const upperCaseLetters = /[A-Z]/g
     const lowerCaseLetters = /[a-z]/g
@@ -105,13 +124,6 @@ export function checkPassword() {
       return false
       }
   
-    if (passwordInput.value === emailInput.value) {
-      passwordInput.style.border = '2px solid red'
-      checkPasswords.style.border = '2px solid red'
-
-      passwordError.innerHTML = "Password cannot be the same as email"
-      return false
-    }
   
     if (passwordInput.value.includes(' ')) {
       passwordInput.style.border = '2px solid red'
@@ -152,7 +164,7 @@ export function checkPassword() {
       passwordError.innerHTML = "Password must contain at least one special character"
       return false
     }
-    if (passwordInput.value !== passwordCheck.value) {
+    if (passwordInput.value !== checkPasswords.value) {
       passwordInput.style.border = '2px solid red'
       checkPasswords.style.border = '2px solid red'
       passwordError.innerHTML = "Passwords do not match"
@@ -164,28 +176,28 @@ export function checkPassword() {
     passwordError.innerHTML = ""
     return true
   }
-  export function checkEmail() {
-    const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-    if (emailInput.value.includes(' ')) {
-      emailInput.style.border = '2px solid red'
-      emailError.innerHTML = "Email cannot contain spaces"
-      return false;
-    }
-    if (!EMAIL_REGEXP.test(emailInput.value)) {
-      emailInput.style.border = '2px solid red'
-      emailError.innerHTML = "Email is not valid"
-      return false;
-    }
-    if (userData.some(user => user.email === emailInput.value)) {
-     emailInput.style.border = '2px solid red'
-     emailError.innerHTML = "Email is already registered";
-     return false; 
-   }
-   emailError.innerHTML = ""
-    emailInput.style.border = '2px solid green'
+  // export function checkEmail() {
+  //   const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+  //   if (emailInput.value.includes(' ')) {
+  //     emailInput.style.border = '2px solid red'
+  //     emailError.innerHTML = "Email cannot contain spaces"
+  //     return false;
+  //   }
+  //   if (!EMAIL_REGEXP.test(emailInput.value)) {
+  //     emailInput.style.border = '2px solid red'
+  //     emailError.innerHTML = "Email is not valid"
+  //     return false;
+  //   }
+  //   if (userData.some(user => user.email === emailInput.value)) {
+  //    emailInput.style.border = '2px solid red'
+  //    emailError.innerHTML = "Email is already registered";
+  //    return false; 
+  //  }
+  //  emailError.innerHTML = ""
+  //   emailInput.style.border = '2px solid green'
     
-    return true;
-  }
+  //   return true;
+  // }
 //   export function checkAge() {
 //     if (ageInput.value < 14) {
 //       ageInput.style.border = '2px solid red'
@@ -228,12 +240,11 @@ export function checkPassword() {
     e.preventDefault();
     const username = usernameInput.value;
 
-    const email = emailInput.value;
+    const email_or_phone = email_or_phone_Input.value;
     const password = passwordInput.value;
-    const phone = phoneInput.value;
     const gender = genderInput.value;
-    if(checkPassword() && checkEmail() && checkUsername() && checkPhone() && checkGender()) {
-     const user = new User(username, gender, email, password,phone)
+    if(checkPassword() && checkPhoneandEmail() && checkUsername()  && checkGender()) {
+     const user = new User(username, gender, email_or_phone, password,)
      submitButton.disabled = true
      user.generationAvatar()
      img.style.display = "none"
