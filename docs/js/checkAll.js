@@ -111,6 +111,19 @@ function checkPhoneandEmail() {
     }
   }
 }
+
+function checkRegister() {
+  if (userData.some(user => user.email_or_phone === email_or_phone_Input.value)) {
+    email_or_phone_Input.style.border = '2px solid red';
+    emailError.innerHTML = "Email or phone number already registered";
+    return false;
+  }
+
+  email_or_phone_Input.style.border = '2px solid green';
+  emailError.innerHTML = "";
+  return true;
+}
+
 export function checkPassword() {
     const upperCaseLetters = /[A-Z]/g
     const lowerCaseLetters = /[a-z]/g
@@ -176,6 +189,7 @@ export function checkPassword() {
     passwordError.innerHTML = ""
     return true
   }
+  
   // export function checkEmail() {
   //   const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
   //   if (emailInput.value.includes(' ')) {
@@ -239,13 +253,12 @@ export function checkPassword() {
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     const username = usernameInput.value;
-
     const email_or_phone = email_or_phone_Input.value;
     const password = passwordInput.value;
     const gender = genderInput.value;
-    if(checkPassword() && checkPhoneandEmail() && checkUsername()  && checkGender()) {
+    if(checkPassword() && checkPhoneandEmail() && checkUsername()  && checkGender() && checkRegister()) {
      const user = new User(username, gender, email_or_phone, password,)
-     submitButton.disabled = true
+     submitButton.disabled = false
      user.generationAvatar()
      img.style.display = "none"
      userData.push(user)
