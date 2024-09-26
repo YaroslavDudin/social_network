@@ -35,7 +35,7 @@ body {
     width: 100%;
     box-sizing: border-box
   }
-  .btn {
+  .btn-register, .btn-login {
     padding: 10px;
     background-color:#007bff ;
     color: white;
@@ -43,6 +43,8 @@ body {
     cursor: pointer;
     font-size: 16px;
   }
+
+  
   .btn-switch {
     padding: 10px;
     background-color:#007bff ;

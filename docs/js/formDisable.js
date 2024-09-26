@@ -1,10 +1,14 @@
 
+
+
 const registerComplete = document.getElementById("register-complete-button");
 registerComplete.style.display = "none";
 const img = document.getElementById('avatar');
 
 const registerCompleteText = document.getElementById('register-complete-text')
 const switchToLoginButton = document.getElementById('switch-to-login-button');
+const loginButton = document.getElementsByClassName('btn-login')[0]; 
+const registerButton = document.getElementsByClassName('btn-register')[0];
 
 const postText = document.getElementById('posts-text')
 postText.style.display = "none"
@@ -32,16 +36,19 @@ const submitButton = document.getElementById('submit');
 
 }
 
+
+
   function disableFormLogin() {
       switchToLoginButton.addEventListener('click', (e) => {
         e.preventDefault();
         formLogin.forEach((element) => {
           element.style.display = "none";
         });
-        submitButton.textContent = 'Логин';
+        registerButton.style.display = "none";
+        loginButton.style.display = "block";
         registerComplete.style.display = "none";
         registerCompleteText.style.display = "none";
-        
+
       })
     }
 

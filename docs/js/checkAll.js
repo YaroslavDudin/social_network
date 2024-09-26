@@ -25,10 +25,16 @@ const registerCompleteText = document.getElementById('register-complete-text')
  export const passwordInput = document.getElementById('password');
  export const checkPasswords = document.getElementById('passwordCheck');
  const submitButton = document.getElementById('submit');
-//  const switchToLoginButton = document.getElementById('switch-to-login-button');
 //  const checkGenders = document.getElementsByName('gender')
  const genderStyles = document.getElementById('genderSelect');
- 
+ const loginButton = document.getElementsByClassName('btn-login')[0]; 
+ const registerButton = document.getElementsByClassName('btn-register')[0];
+
+ export function disableLoginButton() {
+  loginButton.style.display = registerButton.style.display === "none" ? "block" : "none";
+  console.log('login button ' + (loginButton.style.display === "block" ? 'enabled' : 'disabled'))
+}
+
  export function checkGender () {
   if (genderInput.value === "male")  {
     genderStyles.style.border = '2px solid green'
