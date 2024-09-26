@@ -15,7 +15,7 @@ infoPostText.style.display = "none"
 const postsButton = document.getElementById('post-button')
 postsButton.style.display = "none"
 const a = document.getElementById('form-container');
-const formLogin = document.querySelectorAll('.login-disable-age, .login-disable-age-label, .login-disable-email, .login-disable-email-label, .login-disable-phone, .login-disable-phone-label, .login-disable-sex-select, .login-disable-sex-select-label');
+const formLogin = document.querySelectorAll('.login-disable-age, .login-disable-age-label, .login-disable-phone, .login-disable-phone-label, .login-disable-sex-select, .login-disable-sex-select-label');
 const submitButton = document.getElementById('submit');
   function disableForm() {
     registerComplete.addEventListener('click', (e) => {
@@ -39,9 +39,9 @@ const submitButton = document.getElementById('submit');
           element.style.display = "none";
         });
         submitButton.textContent = 'Логин';
-        // form.style.display = "block";
         registerComplete.style.display = "none";
         registerCompleteText.style.display = "none";
+        
       })
     }
 
