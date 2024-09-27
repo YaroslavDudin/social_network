@@ -31,6 +31,8 @@ const infoPostText = document.getElementById('info-post-text')
 
  const switchToLoginButton = document.getElementById('switch-to-login-button');
 const switchToRegisterButton = document.getElementById('switch-to-register-button');
+const back_to_register = document.getElementById('back-to-register');
+
 
 
 export function toggleFormButtons() {
@@ -297,6 +299,15 @@ export function checkLogin () {
     registerCompleteText.style.display = "none";
     registerComplete.style.display = "none";
     img.style.display = "block"
+    back_to_register.style.display = "block";
+    back_to_register.addEventListener('click', (e) => {
+      a.style.display = "block";
+      postText.style.display = "none";
+      infoPostText.style.display = "none";
+      postsButton.style.display = "none";
+      img.style.display = "none"
+      back_to_register.style.display = "none";
+    })
     } else {
       console.log("login failed");
     }

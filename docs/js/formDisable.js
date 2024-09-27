@@ -21,7 +21,7 @@ const submitButton = document.getElementById('submit');
 
 const label1 = document.getElementById('label1');
 const userName = document.getElementById('username');
- 
+const back_to_register = document.getElementById('back-to-register');
 function disableForm() {
     registerComplete.addEventListener('click', (e) => {
     e.preventDefault();
@@ -32,6 +32,15 @@ function disableForm() {
     registerCompleteText.style.display = "none";
     registerComplete.style.display = "none";
     img.style.display = "block"
+    back_to_register.style.display = "block";
+    back_to_register.addEventListener('click', (e) => {
+      a.style.display = "block";
+      postText.style.display = "none";
+      infoPostText.style.display = "none";
+      postsButton.style.display = "none";
+      img.style.display = "none"
+      back_to_register.style.display = "none";
+    })
 
   })
 }
