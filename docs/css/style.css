@@ -117,7 +117,8 @@ body {
       padding: 8px;
       font-size: 14px;
     }
-    #avatar {
+    .avatar {
+      display: none;
       width: 200px;
       height: 200px;
     }
