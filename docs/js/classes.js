@@ -15,13 +15,14 @@ class Post {
   }
  
   class User {
-    id = idGenerate()
+    // id = idGenerate()
     avatar = this.generationAvatar()
     constructor(name,gender, email_or_phone, password) {
       this.name = name
       this.email_or_phone = email_or_phone
       this.password = password
       this.gender = gender
+      this.id = idGenerate();
       
     }
     

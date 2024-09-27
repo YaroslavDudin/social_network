@@ -256,31 +256,51 @@ export function checkPassword() {
   }
   
 
-
-  export function checkAll () {
+//register function
+//   export function checkAll () {
     
+//   submitButton.addEventListener('click', (e) => {
+//     e.preventDefault();
+//     const username = usernameInput.value;
+//     const email_or_phone = email_or_phone_Input.value;
+//     const password = passwordInput.value;
+//     const gender = genderInput.value;
+//     if(checkPassword() && checkPhoneandEmail() && checkUsername()  && checkGender() && checkRegister()) {
+//      const user = new User(username, gender, email_or_phone, password,)
+//      submitButton.disabled = false
+//      user.generationAvatar()
+//      img.style.display = "none"
+//      userData.push(user)
+//      console.log(userData);
+//      registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`
+//      registerComplete.style.display = "block";
+
+//    }
+   
+//   }
+//   )
+  
+ 
+// }
+
+export function checkAll() {
   submitButton.addEventListener('click', (e) => {
     e.preventDefault();
     const username = usernameInput.value;
     const email_or_phone = email_or_phone_Input.value;
     const password = passwordInput.value;
     const gender = genderInput.value;
-    if(checkPassword() && checkPhoneandEmail() && checkUsername()  && checkGender() && checkRegister()) {
-     const user = new User(username, gender, email_or_phone, password,)
-     submitButton.disabled = false
-     user.generationAvatar()
-     img.style.display = "none"
-     userData.push(user)
-     console.log(userData);
-     registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`
-     registerComplete.style.display = "block";
-
-   }
-   
-  }
-  )
-  
- 
+    if (checkPassword() && checkPhoneandEmail() && checkUsername() && checkGender() && checkRegister()) {
+      const user = new User(username, gender, email_or_phone, password);
+      submitButton.disabled = false;
+      user.generationAvatar();
+      img.style.display = "none";
+      userData.push(user);
+      console.log(userData);
+      registerCompleteText.innerHTML = `User ${user.name}, with ID ${user.id} registered`;
+      registerComplete.style.display = "block";
+    }
+  });
 }
 
 
@@ -288,6 +308,7 @@ export function checkLogin () {
   loginButton.addEventListener('click', (e) => {
     e.preventDefault();
     if(userData.some(user => user.email_or_phone === email_or_phone_Input.value && user.password === passwordInput.value)) {
+      saveUserIdOnLogin();       // Save logged in user ID in local storage
       email_or_phone_Input.style.border = '2px solid green'
       passwordInput.style.border = '2px solid green'
       loginButton.disabled = false
@@ -300,6 +321,7 @@ export function checkLogin () {
     registerComplete.style.display = "none";
     img.style.display = "block"
     back_to_register.style.display = "block";
+
     back_to_register.addEventListener('click', (e) => {
       a.style.display = "block";
       postText.style.display = "none";
@@ -314,4 +336,43 @@ export function checkLogin () {
   })
 }
 
-  
+
+function saveUserIdOnLogin() {
+  const emailOrPhone = email_or_phone_Input.value;
+  const user = userData.find(user => user.email_or_phone === emailOrPhone);
+  if (user) {
+    saveUserId(user.id);
+  } else {
+    console.log("User not found");
+  }
+}
+
+export function saveUserId(userId) {
+  localStorage.setItem("currentUserId", userId);
+}
+
+
+function saveCurrentUserIdOnRegisterComplete() {
+  const emailOrPhone = email_or_phone_Input.value;
+  const user = userData.find(user => user.email_or_phone === emailOrPhone);
+  if (user) {
+    saveUserId(user.id);
+  } else {
+    console.log("User not found");
+  }
+}
+
+registerComplete.addEventListener('click', () => {
+  saveCurrentUserIdOnRegisterComplete();
+});
+
+
+
+function removeCurrentUserIdFromLocalStorage() { //function that removes current user id from local storage
+  localStorage.removeItem("currentUserId");
+}
+
+back_to_register.addEventListener('click', () => { //calling function that removes current user id from local storage
+  removeCurrentUserIdFromLocalStorage();
+});
+
