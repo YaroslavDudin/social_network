@@ -18,6 +18,9 @@ postsButton.style.display = "none"
 const a = document.getElementById('form-container');
 const formLogin = document.querySelectorAll('.login-disable-phone, .login-disable-phone-label, .login-disable-sex-select, .login-disable-sex-select-label, .login-disable-password-check, .login-disable-password-check-label');
 const submitButton = document.getElementById('submit');
+
+const label1 = document.getElementById('label1');
+const userName = document.getElementById('username');
  
 function disableForm() {
     registerComplete.addEventListener('click', (e) => {
@@ -40,10 +43,13 @@ function toggleForm() {
     formLogin.forEach((element) => {
       element.style.display = "block";
     });
+
     registerButton.style.display = "block";
     loginButton.style.display = "none";
     registerComplete.style.display = "none";
     registerCompleteText.style.display = "none";
+    userName.style.display = "block";
+    label1.style.display = "block";
   } else {
     // показать экран входа
     formLogin.forEach((element) => {
@@ -53,7 +59,10 @@ function toggleForm() {
     loginButton.style.display = "block";
     registerComplete.style.display = "none";
     registerCompleteText.style.display = "none";
+    userName.style.display = "none";
+    label1.style.display = "none";
   }
 }
+
 
 export {disableForm , toggleForm}

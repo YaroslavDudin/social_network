@@ -1,13 +1,17 @@
-import { toggleForm } from "./formDisable.js";
+import { toggleForm , disableForm } from "./formDisable.js";
 import {userData} from "./script.js";
 import {User} from "./classes.js"
+import {posts} from "./postButton.js"
 const img = document.getElementById('avatar');
 
 const registerComplete = document.getElementById("register-complete-button");
 registerComplete.style.display = "none";
 
 const registerCompleteText = document.getElementById('register-complete-text')
-
+const postsButton = document.getElementById('post-button')
+const postText = document.getElementById('posts-text')
+const a = document.getElementById('form-container');
+const infoPostText = document.getElementById('info-post-text')
 // ERRORS
  const passwordError = document.getElementById('password-error')
  const emailError = document.getElementById('email-error')
@@ -22,7 +26,7 @@ const registerCompleteText = document.getElementById('register-complete-text')
  const submitButton = document.getElementById('submit');
 //  const checkGenders = document.getElementsByName('gender')
  const genderStyles = document.getElementById('genderSelect');
- const loginButton = document.getElementsByClassName('btn-login')[0]; 
+ const loginButton = document.getElementById('login-button'); 
  const registerButton = document.getElementsByClassName('btn-register')[0];
 
  const switchToLoginButton = document.getElementById('switch-to-login-button');
@@ -248,6 +252,9 @@ export function checkPassword() {
     usernameError.innerHTML = ""
     return true
   }
+  
+
+
   export function checkAll () {
     
   submitButton.addEventListener('click', (e) => {
@@ -270,8 +277,30 @@ export function checkPassword() {
    
   }
   )
+  
  
 }
 
+
+export function checkLogin () {
+  loginButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    if(userData.some(user => user.email_or_phone === email_or_phone_Input.value && user.password === passwordInput.value)) {
+      email_or_phone_Input.style.border = '2px solid green'
+      passwordInput.style.border = '2px solid green'
+      loginButton.disabled = false
+      console.log("login successful");
+      a.style.display = "none";
+    postText.style.display = "block";
+    infoPostText.style.display = "block";
+    postsButton.style.display = "block";
+    registerCompleteText.style.display = "none";
+    registerComplete.style.display = "none";
+    img.style.display = "block"
+    } else {
+      console.log("login failed");
+    }
+  })
+}
 
   

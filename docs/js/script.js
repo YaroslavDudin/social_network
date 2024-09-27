@@ -1,4 +1,4 @@
-import { checkAll, toggleFormButtons} from "./checkAll.js";
+import { checkAll, toggleFormButtons, checkLogin} from "./checkAll.js";
 import { disableForm,  toggleForm } from "./formDisable.js";
 import { posts } from "./postButton.js";
 import { hidePassword } from "./hidePassword.js";
@@ -17,5 +17,6 @@ export let userData = [];
 
  toggleFormButtons()
 
+ checkLogin()
 
 })
