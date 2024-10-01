@@ -309,6 +309,10 @@ export function checkLogin () {
     e.preventDefault();
     if(userData.some(user => user.email_or_phone === email_or_phone_Input.value && user.password === passwordInput.value)) {
       saveUserIdOnLogin();       // Save logged in user ID in local storage
+      const avatarUser = userData.find(avatarUrl);
+      console.log(avatarUser);
+      
+      img.src = avatarUser
       email_or_phone_Input.style.border = '2px solid green'
       passwordInput.style.border = '2px solid green'
       loginButton.disabled = false
